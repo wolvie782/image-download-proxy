@@ -31,9 +31,6 @@ app.get("/download", async (req, res) => {
     } catch {
       return res.status(400).send("Invalid url");
     }
-    if (ALLOWED.size && !ALLOWED.has(host)) {
-      return res.status(403).send("Domain not allowed");
-    }
 
     // Fetch the remote file (follow redirects). Node 18+ has global fetch.
     const upstream = await fetch(url, {
